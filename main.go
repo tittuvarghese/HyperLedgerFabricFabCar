@@ -106,4 +106,13 @@ func main() {
 		fmt.Printf("Successfully invoke - Change Car Owner, transaction ID: %s\n", txId)
 	}
 
+	// Retrieving History of a Record
+
+	response, err = fabricSdk.GetHistoryofCar("CAR10")
+	if err != nil {
+		fmt.Printf("Unable to query to retrieve history of record from the chaincode: %v\n", err)
+	} else {
+		fmt.Printf("Response from the Chain for history of a record: %s\n", response)
+	}
+
 }

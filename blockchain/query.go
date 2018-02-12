@@ -54,3 +54,27 @@ func (setup *FabricSetup) QueryOne(value string) (string, string, error) {
 	}
 	return string(transactionProposalResponses[0].ProposalResponse.GetResponse().Payload), txID, nil
 }
+
+// GetHistoryofCar - Retrieves history of transaction by passing Key
+func (setup *FabricSetup) GetHistoryofCar(value string) (string, error) {
+
+	// Prepare arguments
+	var args []string
+	args = append(args, "invoke")
+	args = append(args, "gethistory")
+	args = append(args, value)
+
+	// Make the proposal and submit it to the network (via our primary peer)
+	transactionProposalResponses, _, err := fcutil.CreateAndSendTransactionProposal(
+		setup.Channel,
+		setup.ChaincodeId,
+		setup.ChannelId,
+		args,
+		[]api.Peer{setup.Channel.GetPrimaryPeer()}, // Peer contacted when submitted the proposal
+		nil,
+	)
+	if err != nil {
+		return "", fmt.Errorf("Create and send transaction proposal return error in the get history of the record: %v", err)
+	}
+	return string(transactionProposalResponses[0].ProposalResponse.GetResponse().Payload), nil
+}
