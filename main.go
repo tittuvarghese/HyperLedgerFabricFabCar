@@ -115,4 +115,10 @@ func main() {
 		fmt.Printf("Response from the Chain for history of a record: %s\n", response)
 	}
 
+	// Make the web application listening
+	app := &controllers.Application{
+		Fabric: fabricSdk,
+	}
+	web.Serve(app)
+
 }
