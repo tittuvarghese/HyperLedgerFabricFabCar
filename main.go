@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -63,4 +64,37 @@ func main() {
 	} else {
 		fmt.Printf("Response from the queryOne: %v\n", response)
 	}
+
+	// Create New Car
+	type Car struct {
+		Make   string `json:"make"`
+		Model  string `json:"model"`
+		Colour string `json:"colour"`
+		Owner  string `json:"owner"`
+	}
+	carData := Car{}
+	carKey := "CAR10"
+	carData.Make = "Volkswagen"
+	carData.Model = "Vento"
+	carData.Colour = "grey"
+	carData.Owner = "Mohan"
+
+	RequestData, _ := json.Marshal(carData)
+	txId, err := fabricSdk.CreateCar(carKey, string(RequestData))
+
+	if err != nil {
+		fmt.Printf("Unable to create record on the chaincode: %v\n", err)
+	} else {
+		fmt.Printf("Successfully created record, transaction ID: %s\n", txId)
+	}
+
+	// Query the chaincode Again to retrieve updated data
+	fmt.Println("###### Query All ######")
+	response, err = fabricSdk.QueryAll()
+	if err != nil {
+		fmt.Printf("Unable to query all from the chaincode: %v\n", err)
+	} else {
+		fmt.Printf("Response from the queryAll: %v\n", response)
+	}
+
 }

@@ -90,6 +90,11 @@ func (t *ServntireDemoChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.queryone(stub, args)
 	}
 
+	// Adding a new transaction to the ledger
+	if args[0] == "create" {
+		return t.createcar(stub, args)
+	}
+
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
 }
@@ -165,6 +170,22 @@ func (t *ServntireDemoChaincode) queryone(stub shim.ChaincodeStubInterface, args
 	// Transaction Response
 	return shim.Success(carAsBytes)
 
+}
+
+// Adds a new transaction to the ledger
+func (s *ServntireDemoChaincode) createcar(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	if len(args) < 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
+	}
+
+	var newCar Car
+	json.Unmarshal([]byte(args[2]), &newCar)
+	var car = Car{Make: newCar.Make, Model: newCar.Model, Colour: newCar.Colour, Owner: newCar.Owner}
+	carAsBytes, _ := json.Marshal(car)
+	stub.PutState(args[1], carAsBytes)
+
+	return shim.Success(nil)
 }
 
 func main() {
