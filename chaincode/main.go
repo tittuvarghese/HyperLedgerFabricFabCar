@@ -85,11 +85,6 @@ func (t *ServntireDemoChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.query(stub, args)
 	}
 
-	// The update argument will manage all update in the ledger
-	if args[0] == "invoke" {
-		return t.invoke(stub, args)
-	}
-
 	// Querying Single Record by Passing CAR ID => Key as parameter
 	if args[0] == "queryone" {
 		return t.queryone(stub, args)
