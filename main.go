@@ -8,6 +8,8 @@ import (
 	"runtime"
 
 	"github.com/servntire/servntire-demo/blockchain"
+	"github.com/servntire/servntire-demo/web"
+	"github.com/servntire/servntire-demo/web/controllers"
 )
 
 // Fix empty GOPATH with golang 1.8 (see https://github.com/golang/go/blob/1363eeba6589fca217e155c829b2a7c00bc32a92/src/go/build/build.go#L260-L277)
