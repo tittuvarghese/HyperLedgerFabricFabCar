@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/servntire/servntire-demo/blockchain"
 	"fmt"
 	"os"
-	"runtime"
 	"path/filepath"
+	"runtime"
+
+	"github.com/servntire/servntire-demo/blockchain"
 )
 
 // Fix empty GOPATH with golang 1.8 (see https://github.com/golang/go/blob/1363eeba6589fca217e155c829b2a7c00bc32a92/src/go/build/build.go#L260-L277)
@@ -38,5 +39,11 @@ func main() {
 	_, err := blockchain.Initialize()
 	if err != nil {
 		fmt.Printf("Unable to initialize the Fabric SDK: %v", err)
+	}
+
+	// Install and instantiate the chaincode
+	err = fabricSdk.InstallAndInstantiateCC()
+	if err != nil {
+		fmt.Printf("Unable to install and instantiate the chaincode: %v\n", err)
 	}
 }
