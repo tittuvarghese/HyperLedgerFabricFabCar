@@ -48,10 +48,19 @@ func main() {
 	}
 
 	// Query the chaincode
+	fmt.Println("###### Query All ######")
 	response, err := fabricSdk.QueryAll()
 	if err != nil {
 		fmt.Printf("Unable to query all records from the chaincode: %v\n", err)
 	} else {
 		fmt.Printf("Response from the queryAll: %v\n", response)
+	}
+
+	fmt.Println("###### Query One ######")
+	response, _, err = fabricSdk.QueryOne("CAR4")
+	if err != nil {
+		fmt.Printf("Unable to query one from chaincode: %v\n", err)
+	} else {
+		fmt.Printf("Response from the queryOne: %v\n", response)
 	}
 }

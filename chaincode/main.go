@@ -85,6 +85,16 @@ func (t *ServntireDemoChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.query(stub, args)
 	}
 
+	// The update argument will manage all update in the ledger
+	if args[0] == "invoke" {
+		return t.invoke(stub, args)
+	}
+
+	// Querying Single Record by Passing CAR ID => Key as parameter
+	if args[0] == "queryone" {
+		return t.queryone(stub, args)
+	}
+
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
 }
@@ -145,6 +155,21 @@ func (t *ServntireDemoChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown query action, check the second argument.")
+}
+
+//  Retrieves a single record from the ledger by accepting Key value
+func (t *ServntireDemoChaincode) queryone(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	if len(args) < 2 {
+		return shim.Error("The number of arguments is insufficient.")
+	}
+
+	// GetState retrieves the data from ledger using the Key
+	carAsBytes, _ := stub.GetState(args[1])
+
+	// Transaction Response
+	return shim.Success(carAsBytes)
+
 }
 
 func main() {
