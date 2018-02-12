@@ -97,4 +97,13 @@ func main() {
 		fmt.Printf("Response from the queryAll: %v\n", response)
 	}
 
+	// Changing Car Owner by Passing Key and Value
+	fmt.Println("###### Change Ownership ######")
+	txId, err = fabricSdk.ChangeCarOwner("CAR10", "Keyana")
+	if err != nil {
+		fmt.Printf("Unable to invoke - Change Car Owner on the chaincode: %v\n", err)
+	} else {
+		fmt.Printf("Successfully invoke - Change Car Owner, transaction ID: %s\n", txId)
+	}
+
 }

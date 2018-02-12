@@ -85,6 +85,11 @@ func (t *ServntireDemoChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.query(stub, args)
 	}
 
+	// The update argument will manage all update in the ledger
+	if args[0] == "invoke" {
+		return t.invoke(stub, args)
+	}
+
 	// Querying Single Record by Passing CAR ID => Key as parameter
 	if args[0] == "queryone" {
 		return t.queryone(stub, args)
@@ -155,6 +160,35 @@ func (t *ServntireDemoChaincode) query(stub shim.ChaincodeStubInterface, args []
 
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown query action, check the second argument.")
+}
+
+// invoke
+// Every functions that read and write in the ledger will be here
+func (t *ServntireDemoChaincode) invoke(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+
+	if len(args) < 2 {
+		return shim.Error("The number of arguments is insufficient.")
+	}
+
+	// Changing Ownership of a Car by Accepting Key and Value
+	if args[1] == "changeOwner" && len(args) == 4 {
+
+		/*
+			@@@ Editing Single Field @@@
+		*/
+		carAsBytes, _ := stub.GetState(args[2])
+		car := Car{}
+
+		json.Unmarshal(carAsBytes, &car)
+		car.Owner = args[3]
+
+		carAsBytes, _ = json.Marshal(car)
+		stub.PutState(args[2], carAsBytes)
+		return shim.Success(nil)
+	}
+
+	// If the arguments given don’t match any function, we return an error
+	return shim.Error("Unknown invoke action, check the second argument.")
 }
 
 //  Retrieves a single record from the ledger by accepting Key value
