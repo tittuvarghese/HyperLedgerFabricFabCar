@@ -60,6 +60,7 @@ func (app *Application) UpdateHandler(w http.ResponseWriter, r *http.Request) {
 		/* Form Data */
 
 		carOwner := r.FormValue("carOwner")
+		carKey := r.FormValue("carKey")
 
 		//RequestData, _ := json.Marshal(carData)
 		txid, err := app.Fabric.ChangeCarOwner(carKey, carOwner)
