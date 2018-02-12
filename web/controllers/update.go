@@ -58,15 +58,11 @@ func (app *Application) UpdateHandler(w http.ResponseWriter, r *http.Request) {
 	// Update Single Record
 	if r.FormValue("updated") == "true" {
 		/* Form Data */
-		carData := Car{}
-		carKey := r.FormValue("carKey")
-		carData.Make = r.FormValue("carMake")
-		carData.Model = r.FormValue("carModel")
-		carData.Colour = r.FormValue("carColor")
-		carData.Owner = r.FormValue("carOwner")
 
-		RequestData, _ := json.Marshal(carData)
-		txid, err := app.Fabric.UpdateCarRecord(carKey, string(RequestData))
+		carOwner := r.FormValue("carOwner")
+
+		//RequestData, _ := json.Marshal(carData)
+		txid, err := app.Fabric.ChangeCarOwner(carKey, carOwner)
 
 		if err != nil {
 			http.Error(w, "Unable to update record in the blockchain", 500)
