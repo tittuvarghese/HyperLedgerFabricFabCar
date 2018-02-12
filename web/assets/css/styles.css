@@ -1,0 +1,194 @@
+main.container {
+    margin-bottom: 100px;
+}
+
+nav .navbar-brand > img {
+    display: inline-block;
+    height: 100%;
+    margin-right: 10px;
+}
+html {
+  font-size: 13px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+a, a:link, a:hover, a:visited {
+  text-decoration: none;
+}
+h1 {
+  font-size: 2.1em;
+}
+.bottom-border {
+  border-bottom: 1px solid #E2E8ED;
+}
+/* Header */
+header {
+  border-bottom: 1px solid #E2E8ED;
+  margin-bottom: 20px;
+}
+.header-logo {
+  padding-top: 18px;
+}
+.header-menu {
+  list-style: none;
+}
+.header-menu li {
+  display: inline-block;
+  padding: 22px 20px 10px 20px
+}
+.header-menu li a {
+  padding-top: 15px;
+}
+.header-menu li .btn-header-menu {
+  border-radius: 100px;
+  padding: 7px 20px;
+  font-weight: 300;
+}
+.header-menu-black, .header-menu-black:hover {
+  color: #1B1B1B;
+}
+.header-btn {
+  padding:0px 5px !important;
+}
+/* Button */
+.btn-with-border-slider {
+  border-radius: 100px;
+  padding: 12px 55px;
+  font-weight: 300;
+  font-size: 15px;
+}
+/* Slider */
+.home-slider {
+  margin-top: 120px;
+  color: #1b1b1b;
+}
+.slider-content {
+    font-size: 15px;
+    line-height: 1.875em;
+    margin-top: 20px;
+    margin-bottom: 45px;
+    color: #1b1b1b;
+}
+/* Customers */
+.text-customers {
+    font-size:16px;
+    line-height: 1.275em;
+    font-weight: 300;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    color: #737373;
+}
+/* Home Page - Analytics */
+.analytics {
+  margin-top: 60px;
+  border-top: 1px solid #E2E8ED;
+  padding-top:70px;
+  background-position: 0% -100%;
+  background-image: url("img/analytics.png");
+  background-size: cover;
+}
+.analytics-content {
+    font-size: 15px;
+    line-height: 1.875em;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    color: #1b1b1b;
+}
+.analytics-video {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+/* Testimonials */
+.client-testimonials {
+  background-color: #F5F8FA;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+.client-testimonials img {
+  border-radius:50%;
+}
+.client-testimonials-content {
+  margin-top: 30px;
+}
+.client-testimonials-content p {
+  padding-top: 10px;
+  color:#737373;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+/* footer */
+footer {
+  padding-top: 50px;
+  padding-bottom: 20px;
+  background-color: #fff;
+}
+.footer-menu-heading {
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+footer ul {
+  list-style: none;
+}
+.footer-menu-black, .footer-menu-black:hover {
+  /*color: #1B1B1B;*/
+}
+.copyright-text {
+  margin-top: 20px;
+  font-weight: 300;
+  color: #8b959e;
+  font-size: 13px;
+}
+/*NAVBAR*/
+.header-menu-bars {
+  z-index: 1000;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  display: none;
+}
+.header-menu-bars a,.header-menu-bars a:hover, .header-menu-bars a:visited, .header-menu-bars a:active {
+  color: #1b1b1b;
+}
+#MobileMenu {
+  right: 15px;
+  top:45px;
+  position: absolute;
+  z-index: 999;
+}
+#MobileMenu ul {
+  list-style: none;
+  padding: 0px;
+}
+.mobile-menu li {
+  text-align: left;
+  padding: 20px 25px 20px 30px;
+  border-bottom: 1px solid #f6f6f6;
+}
+.mobile-menu-container {
+  background: #fff;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.3);
+  display: none;
+}
+@media (max-width: 1023px)
+{
+    .header-menu {
+      display: none;
+    }
+    .header-menu-bars  {
+      display: block;
+    }
+    .header-logo {
+      padding-top: 16px;
+      padding-bottom: 14px;
+    }
+    .mobile-menu-container {
+      display: block;
+    }
+}
+/* Dashboard Page */

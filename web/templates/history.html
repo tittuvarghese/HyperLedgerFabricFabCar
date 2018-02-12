@@ -1,0 +1,61 @@
+{{define "title"}}Create Record{{end}}
+
+{{define "body"}}
+<h3>History</h3>
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="history.html" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control rect-input-form" id="carKeySearch" name="carKeySearch" placeholder="Car Key">
+              <option>Select a Key to Update</option>
+              {{range $i, $BlockResponse := .ResponseData}}
+                <option>{{$BlockResponse.Key}}</option>
+              {{end}}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group text-center">
+            <input type="hidden" name="requested" value="{{.TransactionRequested}}">
+            <button type="submit" class="btn btn-primary btn-block text-center">Get History</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{ if eq .TransactionRequested "true"}}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    {{range $i, $BlockResponse := .RecordHistory}}
+    <p>TXN ID: <strong>{{$BlockResponse.TxId}}</strong> Timestamp: <strong>{{$BlockResponse.Timestamp}}</strong></p>
+    <table class="table table-striped" style="margin-top:5px;">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Make</th>
+          <th scope="col">Model</th>
+          <th scope="col">Color</th>
+          <th scope="col">Owner</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{add $i 1}}</th>
+          <td>{{$BlockResponse.Value.Make}}</td>
+          <td>{{$BlockResponse.Value.Model}}</td>
+          <td>{{$BlockResponse.Value.Colour}}</td>
+          <td>{{$BlockResponse.Value.Owner}}</td>
+        </tr>
+      </tbody>
+    </table>
+    {{end}}
+  </div>
+</div>
+{{end}}
+
+<a href="home.html">Back to Home</a>
+{{end}}

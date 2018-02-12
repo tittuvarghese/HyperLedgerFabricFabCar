@@ -1,0 +1,45 @@
+{{define "title"}}Create Record{{end}}
+
+{{define "body"}}
+<h1>Request</h1>
+
+{{ if .Response }}
+{{ if .Success }}
+<div class="alert alert-success" role="alert">
+    Successfully created the record, transaction ID: {{ .TransactionId }}
+</div>
+{{ else }}
+<div class="alert alert-danger" role="alert">
+    Unable to create the transaction, retry later.
+</div>
+{{ end }}
+{{ end }}
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="create.html" method="post">
+      <div class="form-group">
+        <input class="form-control rect-input-form" type="text" id="carKey" name="carKey" spellcheck="false" autocomplete="off" placeholder="Car Key">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" type="text" id="carMake" name="carMake" spellcheck="false" autocomplete="off" placeholder="Car Make">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" type="text" id="carModel" name="carModel" spellcheck="false" autocomplete="off" placeholder="Car Model">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" type="text" id="carColor" name="carColor" spellcheck="false" autocomplete="off" placeholder="Car Color">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" type="text" id="carOwner" name="carOwner" spellcheck="false" autocomplete="off" placeholder="Car Owner">
+      </div>
+      <div class="form-group text-center">
+        <input type="hidden" name="submitted" value="true">
+        <button type="submit" class="btn btn-primary btn-block text-center">Add Transaction</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<a href="home.html">Back to Home</a>
+{{end}}

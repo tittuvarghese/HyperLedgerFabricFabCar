@@ -1,0 +1,31 @@
+{{define "title"}}Home{{end}}
+
+{{define "body"}}
+<div class="container">
+
+</div>
+<h3>Record - Query One</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Make</th>
+      <th scope="col">Model</th>
+      <th scope="col">Color</th>
+      <th scope="col">Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{.ResponseData.Make}}</td>
+      <td>{{.ResponseData.Model}}</td>
+      <td>{{.ResponseData.Colour}}</td>
+      <td>{{.ResponseData.Owner}}</td>
+    </tr>
+  </tbody>
+</table>
+<p class="slider-content">
+  Transaction ID = {{.TransactionID}}
+</p>
+{{end}}

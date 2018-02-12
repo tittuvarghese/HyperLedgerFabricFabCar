@@ -1,0 +1,71 @@
+{{define "title"}}Create Record{{end}}
+
+{{define "body"}}
+<h3>Update</h3>
+
+{{ if .Response }}
+{{ if .Success }}
+<div class="alert alert-success" role="alert">
+    Successfully updated the record, transaction ID: {{ .TransactionId }}
+</div>
+{{ else }}
+<div class="alert alert-danger" role="alert">
+    Unable to update the transaction, retry later.
+</div>
+{{ end }}
+{{ end }}
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="update.html" method="post">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <select class="form-control rect-input-form" id="carKeySearch" name="carKeySearch" placeholder="Car Key">
+              <option>Select a Key to Update</option>
+              {{range $i, $BlockResponse := .ResponseData}}
+                <option>{{$BlockResponse.Key}}</option>
+              {{end}}
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group text-center">
+            <input type="hidden" name="requested" value="{{.TransactionRequested}}">
+            <button type="submit" class="btn btn-primary btn-block text-center">Edit Transaction</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{{ if eq .TransactionRequested "false"}}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <form action="update.html" method="post">
+      <div class="form-group">
+        <input class="form-control rect-input-form" value="{{.SearchKey}}" type="hidden" id="carKey" name="carKey" spellcheck="false" autocomplete="off" placeholder="Car Key">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" value="{{.QueryData.Make}}" type="text" id="carMake" name="carMake" spellcheck="false" autocomplete="off" placeholder="Car Make">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" value="{{.QueryData.Model}}" type="text" id="carModel" name="carModel" spellcheck="false" autocomplete="off" placeholder="Car Model">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" value="{{.QueryData.Colour}}" type="text" id="carColor" name="carColor" spellcheck="false" autocomplete="off" placeholder="Car Color">
+      </div>
+      <div class="form-group">
+        <input class="form-control rect-input-form" value="{{.QueryData.Owner}}" type="text" id="carOwner" name="carOwner" spellcheck="false" autocomplete="off" placeholder="Car Owner">
+      </div>
+      <div class="form-group text-center">
+        <input type="hidden" name="updated" value="{{.TransactionUpdated}}">
+        <button type="submit" class="btn btn-primary btn-block text-center">Update Transaction</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{end}}
+
+<a href="home.html">Back to Home</a>
+{{end}}

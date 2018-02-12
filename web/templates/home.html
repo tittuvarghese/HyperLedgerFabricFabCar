@@ -1,0 +1,34 @@
+{{define "title"}}Home{{end}}
+
+{{define "body"}}
+<div class="container">
+
+</div>
+<h3>Records - Query All</h3>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Key</th>
+      <th scope="col">Make</th>
+      <th scope="col">Model</th>
+      <th scope="col">Color</th>
+      <th scope="col">Owner</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range $i, $BlockResponse := .ResponseData}}
+    <tr>
+      <th scope="row">{{add $i 1}}</th>
+      <td><a href="query.html?car={{$BlockResponse.Key}}">{{$BlockResponse.Key}}</a></td>
+      <td>{{$BlockResponse.Record.Make}}</td>
+      <td>{{$BlockResponse.Record.Model}}</td>
+      <td>{{$BlockResponse.Record.Colour}}</td>
+      <td>{{$BlockResponse.Record.Owner}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+
+{{end}}
