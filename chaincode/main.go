@@ -101,11 +101,6 @@ func (t *ServntireDemoChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Res
 		return t.createcar(stub, args)
 	}
 
-	// Getting History of a Record by passing CAR ID => Key as parameter.
-	if args[0] == "gethistory" {
-		return t.gethistory(stub, args)
-	}
-
 	// If the arguments given don’t match any function, we return an error
 	return shim.Error("Unknown action, check the first argument")
 }
